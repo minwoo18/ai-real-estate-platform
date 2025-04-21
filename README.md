@@ -270,7 +270,7 @@ def recommend_listings(df, budget, location=None, min_area=None, top_k=5):
     print(f"🔍 추천 매물 {len(recommendations)}건:")
     return recommendations[["아파트", "법정동", "전용면적", "층", "건축년도", "거래금액"]]
 
-## 4주차 백엔드 API 개발
+## 5주차 백엔드 API 개발
 
 [Uploadingfrom flask import Flask, jsonify, request
 from flask_sqlalchemy import SQLAlchemy
