@@ -148,7 +148,7 @@ DEAL_YMD = "202403"                 # 거래 연월 (YYYYMM)
 
 def fetch_real_estate_data(service_key, region_code, deal_ymd):
     """국토교통부 API를 통해 실거래 데이터 수집"""
-    url = "http://openapi.molit.go.kr:8081/OpenAPI_ToolInstallPackage/service/rest/RTMSOBJSvc/getRTMSDataSvcAptTradeDev"
+  
     params = {
         "serviceKey": service_key,
         "LAWD_CD": region_code,
