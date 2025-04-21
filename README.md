@@ -120,3 +120,35 @@ AI 기반 부동산 시세 예측 및 매물 추천 플랫폼의 UI/UX 디자인
 - AI 분석 기반 인기 지역 표시
 
 ---
+
+## 3주차 부동산 시세 예측 모델 개발
+
+### 부동산 시세 예측 모델 (기초 모델: 랜덤포레스트) 
+
+from sklearn.model_selection import train_test_split
+from sklearn.ensemble import RandomForestRegressor
+from sklearn.metrics import mean_absolute_error
+from sklearn.preprocessing import LabelEncoder
+
+# 범주형 인코딩 (법정동, 아파트 이름 등)
+le_dong = LabelEncoder()
+le_apt = LabelEncoder()
+df["법정동"] = le_dong.fit_transform(df["법정동"])
+df["아파트"] = le_apt.fit_transform(df["아파트"])
+
+# 특성 및 타깃 설정
+X = df[["건축년도", "전용면적", "층", "법정동", "아파트"]]
+y = df["거래금액"]
+
+# 훈련/검증 데이터 분할
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+# 모델 학습
+model = RandomForestRegressor(n_estimators=100, random_state=42)
+model.fit(X_train, y_train)
+
+# 예측 및 성능 평가
+y_pred = model.predict(X_test)
+mae = mean_absolute_error(y_test, y_pred)
+print(f"평균 절대 오차 (MAE): {mae:,.0f} 원")
+
